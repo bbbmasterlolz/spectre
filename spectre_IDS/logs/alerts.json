@@ -1,3 +1,0 @@
-{"timestamp": "2025-10-15T23:51:41", "source": "spectre-ids", "alert_type": "Spectre-r2l", "src_ip": "57.144.101.33", "dst_ip": "192.168.1.11", "confidence": 100.0}
-{"timestamp": "2025-10-16T00:03:34", "source": "spectre-ids", "alert_type": "Spectre-probe", "src_ip": "192.168.1.11", "dst_ip": "52.123.173.252", "confidence": 100.0}
-{"timestamp": "2025-10-16T00:04:23", "source": "spectre-ids", "alert_type": "Spectre-probe", "src_ip": "192.168.1.11", "dst_ip": "104.18.32.47", "confidence": 100.0}
