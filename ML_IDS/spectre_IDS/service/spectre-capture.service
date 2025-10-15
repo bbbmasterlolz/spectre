@@ -1,0 +1,15 @@
+[Unit]
+Description=Spectre IDS Packet Capture Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/spectre-ids/spectre_IDS
+ExecStart=/opt/spectre-ids/venv/bin/python capture.py
+Restart=always
+RestartSec=5
+User=root
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

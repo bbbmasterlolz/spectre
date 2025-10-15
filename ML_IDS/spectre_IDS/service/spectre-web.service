@@ -1,0 +1,15 @@
+[Unit]
+Description=Spectre IDS Web Interface
+After=network.target spectre-analyzer.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/spectre-ids/webapp
+ExecStart=/opt/spectre-ids/venv/bin/gunicorn -w 2 -b 0.0.0.0:5000 app:app
+Restart=always
+RestartSec=5
+User=root
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

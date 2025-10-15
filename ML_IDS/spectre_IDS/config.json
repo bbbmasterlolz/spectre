@@ -1,0 +1,16 @@
+{
+  "analysis": {
+    "api_url": "http://localhost:5000/api/predict-file",
+    "pcaps_dir": "pcaps",
+    "log_dir": "logs",
+    "check_interval": 10,
+    "abnormal_classes": ["dos", "probe", "r2l", "u2r"]
+  },
+  "capture": {
+    "output_dir": "pcaps",
+    "interval_sec": 10,
+    "max_files": 5,
+    "bpf_filter": "tcp",
+    "iface": null
+  }
+}
