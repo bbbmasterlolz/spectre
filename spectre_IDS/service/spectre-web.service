@@ -5,7 +5,7 @@ After=network.target spectre-analyzer.service
 [Service]
 Type=simple
 WorkingDirectory=/opt/spectre/webapp
-ExecStart=/opt/spectre/venv/bin/gunicorn -w 2 -b 0.0.0.0:5000 app:app
+ExecStart=/opt/spectre/venv/bin/python -m webapp.app
 Restart=always
 RestartSec=5
 User=root
