@@ -5,7 +5,7 @@ After=network.target spectre-analyzer.service
 [Service]
 Type=simple
 WorkingDirectory=/opt/spectre/webapp
-ExecStart=/opt/spectre/venv/bin/python /opt/spectre/webapp/app.py
+ExecStart=/opt/spectre/venv/bin/python app.py
 Restart=always
 RestartSec=5
 User=root
