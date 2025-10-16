@@ -10,7 +10,7 @@
     "output_dir": "pcaps",
     "interval_sec": 10,
     "max_files": 5,
-    "bpf_filter": "tcp",
-    "iface": null
+    "bpf_filter": "",
+    "iface": "enp0s8"
   }
 }

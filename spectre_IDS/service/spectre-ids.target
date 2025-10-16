@@ -1,4 +1,0 @@
-[Unit]
-Description=Spectre IDS Full Stack
-Requires=spectre-capture.service spectre-analyzer.service spectre-web.service
-After=network.target
