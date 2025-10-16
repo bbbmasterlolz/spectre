@@ -4,12 +4,7 @@
     "pcaps_dir": "pcaps",
     "log_dir": "logs",
     "check_interval": 10,
-    "abnormal_classes": [
-      "dos",
-      "probe",
-      "r2l",
-      "u2r"
-    ]
+    "abnormal_classes": ["dos", "probe", "r2l", "u2r"]
   },
   "capture": {
     "output_dir": "pcaps",
