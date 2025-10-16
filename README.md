@@ -1,31 +1,74 @@
-# ML_IDS
+# 🛡️ **Spectre IDS Setup & Integration Guide**
 
-## Web Aplikasi (Flask)
+This guide explains how to install, configure, and run **Spectre IDS**, as well as how to integrate it with **Wazuh** for centralized alert monitoring.
+## Installation
 
-Instruksi singkat untuk menjalankan antarmuka web berbasis Flask:
+```bash
+cd /opt
+sudo su
+git clone https://github.com/bbbmasterlolz/spectre
+cd spectre
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+deactivate
+cp /opt/spectre/spectre_IDS/service/*.service /etc/systemd/system/
+```
 
-1. Buat dan aktifkan lingkungan virtual (opsional tapi disarankan):
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
-2. Pasang dependensi:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Jalankan server:
-   ```bash
-   python -m webapp.app
-   ```/\
-   - Untuk server produksi (contoh menggunakan gunicorn):
-     ```bash
-     gunicorn -w 1 -b 127.0.0.1:5000 webapp.app:app
-     ```
-4. Buka `http://127.0.0.1:5000` di peramban untuk mengunggah berkas PCAP (fitur akan diekstrak secara otomatis) atau gunakan endpoint `POST /api/predict` untuk prediksi berbasis JSON.
-   - Jika port 5000 sedang terpakai, jalankan dengan `PORT=5050 python -m webapp.app` (bebas memilih port lain).
+## Configuration
 
-Model yang digunakan secara default berada di `models/model_random_forest.joblib`. Jika ingin mengganti model, ubah path pada pemanggilan `create_app`.
+```bash
+nano /opt/spectre/spectre_IDS/config.json
+```
 
-Catatan: proses ekstraksi PCAP membutuhkan dependensi `dpkt` (terpasang melalui `requirements.txt`).
+## Wazuh Integration
 
-Catatan: model dilatih menggunakan scikit-learn 1.7.x, sementara lingkungan runtime menggunakan 1.6.1 karena versi 1.7.x belum tersedia di arsip pip untuk platform ini. Saat memuat model, akan muncul peringatan `InconsistentVersionWarning` yang dapat diabaikan selama inferensi berjalan normal.
+```bash
+sudo nano /opt/spectre/spectre_IDS/logs/alerts.json
+sudo nano /var/ossec/etc/ossec.conf
+```
+
+Add this section inside **ossec.conf**:
+
+```xml
+<localfile>
+  <log_format>json</log_format>
+  <location>/opt/spectre/spectre_IDS/logs/alerts.json</location>
+</localfile>
+```
+
+Then set file permission:
+
+```bash
+sudo chmod 777 /opt/spectre/spectre_IDS/logs/alerts.json
+```
+
+Reload systemd:
+
+```bash
+sudo systemctl daemon-reload
+```
+
+## Auto Start Services
+
+```bash
+sudo systemctl enable spectre-web.service
+sudo systemctl enable spectre-capture.service
+sudo systemctl enable spectre-analyzer.service
+```
+
+## Start Services
+
+```bash
+sudo systemctl start spectre-web.service
+sudo systemctl start spectre-capture.service
+sudo systemctl start spectre-analyzer.service
+```
+
+## Check Status
+
+```bash
+sudo systemctl status spectre-web.service
+sudo systemctl status spectre-capture.service
+sudo systemctl status spectre-analyzer.service
+```
