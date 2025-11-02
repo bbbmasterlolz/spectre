@@ -1,8 +1,11 @@
 import os
 import shutil
+import subprocess
 
 repo_url = "https://github.com/candrawijayaa/ML_IDS.git"
 folder = "ML_IDS"
+service_src = "/opt/spectre/service/"
+service_dest = "/etc/systemd/system/"
 
 # Check if git exists
 if shutil.which("git") is None:
@@ -22,5 +25,15 @@ else:
 
 if result == 0:
     print("Repository ready.")
+
+    # Copy service files
+    print("Copying .service files...")
+    os.system(f"cp {service_src}*.service {service_dest}")
+
+    # Reload systemd daemon
+    print("Reloading systemd daemon...")
+    subprocess.run(["systemctl", "daemon-reload"], check=False)
+
+    print("Done.")
 else:
     print(f"Operation failed (exit code {result}).")
