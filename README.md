@@ -14,7 +14,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 python3 installAPP.py
 deactivate
-cp /opt/spectre/service/*.service /etc/systemd/system/
 ```
 
 ## Configuration
