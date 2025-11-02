@@ -16,6 +16,6 @@
     "interval_sec": 10,
     "max_files": 5,
     "bpf_filter": "",
-    "iface": "enp0s8"
+    "iface": "Wi-Fi"
   }
 }

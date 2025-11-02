@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/opt/spectre/spectre_IDS
+WorkingDirectory=/opt/spectre
 ExecStart=/opt/spectre/venv/bin/python capture.py
 Restart=always
 RestartSec=5
