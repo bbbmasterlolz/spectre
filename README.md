@@ -26,7 +26,6 @@ nano /opt/spectre/config.json
 ## Wazuh Integration
 
 ```bash
-sudo nano /opt/spectre/logs/alerts.json
 sudo nano /var/ossec/etc/ossec.conf
 ```
 
