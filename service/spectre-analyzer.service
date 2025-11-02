@@ -6,6 +6,8 @@ After=spectre-capture.service
 Type=simple
 WorkingDirectory=/opt/spectre
 ExecStart=/opt/spectre/venv/bin/python spectre.py
+Environment="PATH=/opt/spectre/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
 Restart=always
 RestartSec=5
 User=root
