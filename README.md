@@ -14,19 +14,19 @@ source venv/bin/activate
 pip install -r requirements.txt
 python3 installAPP.py
 deactivate
-cp /opt/spectre/spectre_IDS/service/*.service /etc/systemd/system/
+cp /opt/spectre/service/*.service /etc/systemd/system/
 ```
 
 ## Configuration
 
 ```bash
-nano /opt/spectre/spectre_IDS/config.json
+nano /opt/spectre/config.json
 ```
 
 ## Wazuh Integration
 
 ```bash
-sudo nano /opt/spectre/spectre_IDS/logs/alerts.json
+sudo nano /opt/spectre/logs/alerts.json
 sudo nano /var/ossec/etc/ossec.conf
 ```
 
@@ -35,14 +35,14 @@ Add this section inside **ossec.conf**:
 ```xml
 <localfile>
   <log_format>json</log_format>
-  <location>/opt/spectre/spectre_IDS/logs/alerts.json</location>
+  <location>/opt/spectre/logs/alerts.json</location>
 </localfile>
 ```
 
 Then set file permission:
 
 ```bash
-sudo chmod 777 /opt/spectre/spectre_IDS/logs/alerts.json
+sudo chmod 777 /opt/spectre/logs/alerts.json
 ```
 
 Reload systemd:
